@@ -8,7 +8,7 @@ services:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U user -d myappdb"]
+      test: [ "CMD-SHELL", "pg_isready -U user -d myappdb" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -33,7 +33,9 @@ services:
   fastapi:
     build: .
     volumes:
-      - ./:/myapp/
+      - .:/Homework-10/
+    environment:
+      - PYTHONPATH=/Homework-10 # Add this line to ensure Python can find homework-10 module
     depends_on:
       postgres:
         condition: service_healthy
@@ -54,6 +56,7 @@ services:
 volumes:
   postgres-data:
   pgadmin-data:
+
 
 networks:
   app-network:

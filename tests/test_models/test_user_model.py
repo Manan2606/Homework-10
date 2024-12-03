@@ -92,8 +92,6 @@ async def test_user_profile_pic_url_update(db_session: AsyncSession, user: User)
     Tests the profile pic update functionality.
     """
     # Initially, the profile pic should be updated.
-
-    # Verify the email and check.
     profile_pic_url = "http://myprofile/picture.png"
     user.profile_picture_url = profile_pic_url
     await db_session.commit()
@@ -103,33 +101,27 @@ async def test_user_profile_pic_url_update(db_session: AsyncSession, user: User)
 @pytest.mark.asyncio
 async def test_user_linkedin_url_update(db_session: AsyncSession, user: User):
     """
-    Tests the profile pic update functionality.
+    Tests the LinkedIn profile URL update functionality.
     """
-    # Initially, the linkedin should  be updated.
-
-    # Verify the linkedin profile url.
+    # Initially, the linkedin should be updated.
     profile_linkedin_url = "http://www.linkedin.com/profile"
     user.linkedin_profile_url = profile_linkedin_url
     await db_session.commit()
     await db_session.refresh(user)
-    assert user.linkedin_profile_url == profile_linkedin_url, "The profile pic did not update"
-
+    assert user.linkedin_profile_url == profile_linkedin_url, "The LinkedIn profile did not update"
 
 @pytest.mark.asyncio
 async def test_user_github_url_update(db_session: AsyncSession, user: User):
     """
-    Tests the profile pic update functionality.
+    Tests the GitHub profile URL update functionality.
     """
-    # Initially, the linkedin should  be updated.
-
-    # Verify the linkedin profile url.
+    # Initially, the GitHub should be updated.
     profile_github_url = "http://www.github.com/profile"
     user.github_profile_url = profile_github_url
     await db_session.commit()
     await db_session.refresh(user)
-    assert user.github_profile_url == profile_github_url, "The github did not update"
+    assert user.github_profile_url == profile_github_url, "The GitHub profile did not update"
 
-    
 @pytest.mark.asyncio
 async def test_default_role_assignment(db_session: AsyncSession):
     """
@@ -150,3 +142,33 @@ async def test_update_user_role(db_session: AsyncSession, user: User):
     await db_session.commit()
     await db_session.refresh(user)
     assert user.role == UserRole.ADMIN, "Role update should persist correctly in the database"
+
+@pytest.mark.asyncio
+async def test_update_professional_status(db_session: AsyncSession, user: User):
+    """
+    Tests the update_professional_status method to ensure it updates both the status and the timestamp.
+    """
+    initial_timestamp = user.professional_status_updated_at
+    user.update_professional_status(True)
+    await db_session.commit()
+    await db_session.refresh(user)
+    assert user.is_professional is True, "Professional status should be updated"
+    assert user.professional_status_updated_at != initial_timestamp, "Timestamp should update when status changes"
+
+@pytest.mark.asyncio
+async def test_verification_token(db_session: AsyncSession, user: User):
+    """
+    Tests that the verification token is properly handled when set.
+    """
+    token = "some-verification-token"
+    user.verification_token = token
+    await db_session.commit()
+    await db_session.refresh(user)
+    assert user.verification_token == token, "Verification token should be set correctly"
+
+@pytest.mark.asyncio
+async def test_has_role_with_invalid_role(user: User):
+    """
+    Tests the has_role method to handle invalid roles.
+    """
+    assert not user.has_role("INVALID_ROLE"), "Method should return False for invalid roles"
