@@ -63,6 +63,9 @@ Event Manager is a Python-based application built using FastAPI that allows user
 
 
 ### Outcomes
-The project demonstrates how to manage user profiles with JWT authentication and validation.
-Implemented various checks and balances to ensure data integrity, security, and compliance with best practices.
-Successfully set up continuous integration and testing with Pytest, ensuring robustness and reliability.
+
+Through this assignment, I gained significant insights into the technical and collaborative aspects of developing secure, scalable, and user-friendly APIs. Technically, I enhanced my understanding of FastAPI, particularly in creating and managing RESTful endpoints with authentication and role-based access control. The integration of OAuth2 with Password Flow and the implementation of JWT tokens reinforced my knowledge of secure API design. Additionally, I learned to apply SQLAlchemy for asynchronous database operations, which was instrumental in ensuring high performance for user-related CRUD functionalities. Implementing HATEOAS principles to provide dynamic navigational links further expanded my appreciation for designing discoverable and client-centric APIs.
+
+The challenges faced during this assignment included validating and enforcing restrictions for unverified email users and managing different user roles, such as Admin and Manager. Resolving these issues required meticulous testing and a clear understanding of business logic. Collaborative feedback emphasized the importance of well-documented code and clear schemas for consistent API behavior. This reinforced the value of robust documentation and team communication, as they are critical for effective collaboration in any development project.
+
+Overall, this assignment provided a deeper appreciation for the nuances of API development, including balancing security, usability, and maintainability. The hands-on experience, combined with addressing real-world challenges, solidified my learning and highlighted areas for future improvement, such as enhancing automated testing strategies and refining exception handling to provide more descriptive error messages.
