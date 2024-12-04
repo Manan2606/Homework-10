@@ -33,9 +33,7 @@ services:
   fastapi:
     build: .
     volumes:
-      - .:/Homework-10/
-    environment:
-      - PYTHONPATH=/Homework-10 # Add this line to ensure Python can find homework-10 module
+      - ./:/myapp/
     depends_on:
       postgres:
         condition: service_healthy

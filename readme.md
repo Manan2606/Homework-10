@@ -60,7 +60,7 @@ Event Manager is a Python-based application built using FastAPI that allows user
    - **Problem**: Users with unverified emails could update their profiles, leading to potential security issues.
    - **Solution**: Added a check to ensure that only verified email users can update their profile information.
 
-
+![Successfully Runs on Docker](image.png)
 
 ### Outcomes
 
